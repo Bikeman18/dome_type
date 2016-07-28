@@ -66,3 +66,7 @@ gem 'carrierwave-video'
 gem 'sidekiq'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', require: false
 gem 'jquery-fileupload-rails'
+
+gem 'devise_cas_authenticatable',:path =>'/Users/wht/dev/ruby/devise_cas_authenticatable' 
+gem "redis-rails"
+gem 'activeresource',:git => 'https://github.com/rails/activeresource.git'

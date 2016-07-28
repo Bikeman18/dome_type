@@ -15,6 +15,15 @@ GIT
       mini_magick
 
 GIT
+  remote: https://github.com/rails/activeresource.git
+  revision: f8abaf13174e94d179227f352c9dd6fb8b03e0da
+  specs:
+    activeresource (5.0.0)
+      activemodel (> 4.2, < 6)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (> 4.2, < 6)
+
+GIT
   remote: https://github.com/sinatra/sinatra.git
   revision: a5da6fa82c46436f59ae482d07c1752ab908c852
   specs:
@@ -23,6 +32,13 @@ GIT
       rack (~> 2.0)
       rack-protection (~> 1.5)
       tilt (~> 2.0)
+
+PATH
+  remote: /Users/wht/dev/ruby/devise_cas_authenticatable
+  specs:
+    devise_cas_authenticatable (1.9.2)
+      devise (>= 1.2.0)
+      rubycas-client (>= 2.2.1)
 
 GEM
   remote: https://ruby.taobao.org/
@@ -55,6 +71,11 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.0.0)
       activesupport (= 5.0.0)
+    activemodel-serializers-xml (1.0.1)
+      activemodel (> 5.x)
+      activerecord (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.0.0)
       activemodel (= 5.0.0)
       activesupport (= 5.0.0)
@@ -182,11 +203,29 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     redis (3.3.0)
+    redis-actionpack (5.0.0)
+      actionpack (>= 4.0.0, < 6)
+      redis-rack (~> 2.0.0.pre)
+      redis-store (~> 1.2.0.pre)
+    redis-activesupport (5.0.1)
+      activesupport (>= 3, < 6)
+      redis-store (~> 1.2.0)
+    redis-rack (2.0.0.pre)
+      rack (> 1.5, < 3)
+      redis-store (~> 1.2.0.pre)
+    redis-rails (5.0.1)
+      redis-actionpack (~> 5.0.0)
+      redis-activesupport (~> 5.0.0)
+      redis-store (~> 1.2.0)
+    redis-store (1.2.0)
+      redis (>= 2.2)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     roo (2.4.0)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
+    rubycas-client (2.3.9)
+      activesupport
     rubyzip (1.2.0)
     rucaptcha (0.5.1)
       railties (>= 3.2)
@@ -251,11 +290,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeresource!
   byebug
   carrierwave
   carrierwave-video
   coffee-rails (~> 4.2)
   devise
+  devise_cas_authenticatable!
   jbuilder (~> 2.5)
   jquery-fileupload-rails
   jquery-rails
@@ -267,6 +308,7 @@ DEPENDENCIES
   puma
   rails (~> 5.0.0)
   rails_kindeditor!
+  redis-rails
   roo
   rucaptcha
   sass-rails (~> 5.0)

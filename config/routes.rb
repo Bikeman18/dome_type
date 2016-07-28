@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
   root to: 'home#index'
-  devise_for :users, path: 'account', controllers: {
-      sessions: 'users/sessions', registrations: 'users/registrations',
-      confirmations: 'users/confirmations',
-      passwords: 'users/passwords'
-  } #, path_names: {sign_in: 'login'}
+  # devise_for :users, path: 'account', controllers: {
+  #     sessions: 'users/sessions', registrations: 'users/registrations',
+  #     confirmations: 'users/confirmations',
+  #     passwords: 'users/passwords'
+  # } #, path_names: {sign_in: 'login'}
+  devise_for :users, skip: [:sessions], controllers: { cas_sessions: 'our_cas_sessions' }
+  devise_scope :user do
+    get "sign_in", to: "devise/cas_sessions#new"
+    delete "sign_out", to: "devise/cas_sessions#destroy"
+  end
   mount RuCaptcha::Engine => '/rucaptcha'
   resources :accounts, only: [:new, :create, :destroy] do
     collection do
