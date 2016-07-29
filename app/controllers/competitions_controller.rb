@@ -37,7 +37,7 @@ class CompetitionsController < ApplicationController
       @user_info = user_info ||= current_user.build_user_profile
     else
       session[:redirect_to] = request.headers[:Referer]
-      redirect_to user_mobile_path, notice: '继续操作前请添加手机信息'
+      redirect_to Settings.user_reset_mobile_link, notice: '继续操作前请添加手机信息'
     end
   end
 

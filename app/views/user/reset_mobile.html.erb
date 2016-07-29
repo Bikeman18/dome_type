@@ -12,7 +12,7 @@
             <% if current_user.present? && current_user.mobile.present? %>
                 当前手机: <%= current_user.mobile %>
                 <hr>
-                <%= simple_form_for(current_user, url: user_reset_mobile_path, method: :post) do |f| %>
+                <%= simple_form_for(current_user, url: Settings.user_reset_mobile_link, method: :post) do |f| %>
                     <div class="row">
                       <div class="col-xs-6">
 

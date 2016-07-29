@@ -12,16 +12,16 @@
             <p>昵称：<%= current_user.nickname %></p>
             <p>
             <% if current_user.mobile.present? %>
-                手机：<%= current_user.mobile %> <a href="<%= user_reset_mobile_path %>">修改</a>
+                手机：<%= current_user.mobile %> <a href="<%= Settings.user_reset_mobile_link %>">修改</a>
             <% else %>
-                <a href="<%= user_mobile_path %>">添加手机</a>
+                <a href="<%= Settings.user_reset_mobile_link %>">添加手机</a>
             <% end %>
             </p>
             <p>
             <% if current_user.email.present? %>
-                邮箱：<%= current_user.email %> <a href="<%= user_reset_email_path %>">修改</a>
+                邮箱：<%= current_user.email %> <a href="<%= Settings.user_email_link %>">修改</a>
             <% else %>
-                <a href="<%= user_email_path %>">添加邮箱</a>
+                <a href="<%= Settings.user_email_link %>">添加邮箱</a>
             <% end %>
             </p>
             <% if @user_info.present? %>

@@ -1,5 +1,17 @@
 defaults: &defaults
-
+  site_name: 'Robodou'
+  smtp_address: 'smtp.exmail.qq.com'
+  smtp_domain: 'exmail.qq.com'
+  email_username: 'robodou@robodou.cn'
+  email_password: '123qweRBD'
+  email_form: 'DouMu<robodou@robodou.cn>'
+  sms_account: '1001@501188570001'
+  sms_key: '5ADACD3B321C24266C9BDF739AE58EE0'
+  sms_channel: '5552'
+  geetest_key: '0f1a37e33c9ed10dd2e133fe2ae9c459'
+  user_reset_mobile_link: 'http://i.s1.com/profile/phone'
+  user_email_link: 'http://i.s1.com/profile/email'
+  user_passwd_link: 'http://i.s1.com/profile/password'
 development:
   <<: *defaults
   domain: 'http://localhost:3000'

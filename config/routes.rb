@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:sessions], controllers: { cas_sessions: 'our_cas_sessions' }
   devise_scope :user do
     get "sign_in", to: "devise/cas_sessions#new"
-    delete "sign_out", to: "devise/cas_sessions#destroy"
+    delete "sign_out", to: "devise/cas_sessions#destroy", as: "new_user_registration"
   end
   mount RuCaptcha::Engine => '/rucaptcha'
   resources :accounts, only: [:new, :create, :destroy] do
@@ -191,4 +191,5 @@ Rails.application.routes.draw do
   get 'user/comp_student' => 'user#comp_student', as: 'user_comp_student'
   # mount ActionCable.server => '/cable'
   match '*path', via: :all, to: 'home#error_404'
+
 end

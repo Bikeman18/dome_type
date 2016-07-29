@@ -11,7 +11,7 @@
           <div class="sub-content">
             <% if current_user.mobile.present? %>
                 已认证的手机: <%= current_user.mobile %>
-                <a href="<%= user_reset_mobile_path %>" class="btn btn-xs btn-info show-update-mobile">更换手机</a>
+                <a href="<%= Settings.user_reset_mobile_link %>" class="btn btn-xs btn-info show-update-mobile">更换手机</a>
             <% else %>
                 <div class="sub-header">添加手机</div>
                 <%= simple_form_for(current_user, html: {}, url: user_mobile_path, method: :post) do |f| %>
