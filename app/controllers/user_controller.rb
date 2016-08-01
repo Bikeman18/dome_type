@@ -14,14 +14,17 @@ class UserController < ApplicationController
 
   # 个人信息概览
   def preview
-    @user_info = User.joins('left join user_profiles u_p on u_p.user_id = users.id').joins('left join schools s on s.id = u_p.school_id').where(id: current_user.id).select(:email, :mobile, 'u_p.username as name', 'u_p.gender', 'u_p.grade', 'u_p.bj', 'u_p.roles as role', 'u_p.birthday', 's.name as school', 'u_p.address').take
+    # @user_info = User.joins('left join user_profiles u_p on u_p.user_id = users.id').joins('left join schools s on s.id = u_p.school_id').where(id: current_user.id).select(:email, :mobile, 'u_p.username as name', 'u_p.gender', 'u_p.grade', 'u_p.bj', 'u_p.roles as role', 'u_p.birthday', 's.name as school', 'u_p.address').take
+    @user_info = UserInfo.find(current_user.guid)
   end
 
 
   # 修改个人信息
   def profile
     # 获取Profile
-    @user_profile = current_user.user_profile ||= current_user.build_user_profile
+    # @user_profile = current_user.user_profile ||= current_user.build_user_profile
+    guid = current_user.guid
+    @user_profile = UserInfo.find(guid).profile
     # @th_role_status = UserRole.where(user_id: current_user.id, role_id: 1).first # 教师
     @has_roles = UserRole.where(user_id: current_user.id).pluck(:role_id, :status)
 
