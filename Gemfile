@@ -64,9 +64,10 @@ gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'rails_kindeditor', github: 'javyliu/rails_kindeditor'
 gem 'carrierwave-video'
 gem 'sidekiq'
-gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', require: false
+gem 'sinatra', github: 'sinatra/sinatra'
+gem 'rack-protection', github: 'sinatra/rack-protection'
 gem 'jquery-fileupload-rails'
 
-gem 'devise_cas_authenticatable',:path =>'/Users/wht/dev/ruby/devise_cas_authenticatable' 
+gem 'devise_cas_authenticatable',github: 'nbudin/devise_cas_authenticatable'
 gem "redis-rails"
-gem 'activeresource',:git => 'https://github.com/rails/activeresource.git'
+gem 'activeresource',github: 'rails/activeresource'

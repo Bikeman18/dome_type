@@ -12,7 +12,8 @@
             <div class="sub-header">基本信息</div>
             <%= simple_form_for(@user_profile, html: {id: 'form_change_profile', multipart: true}, url: user_profile_path, method: :post) do |f| %>
                 <div class="form-inputs">
-                  <%= f.input :username %>
+                  <label class="control-label" for="user_profile_fullname">姓名</label>
+                  <input name="user_profile[fullname]" class="form-control" id="user_profile_fullname" type="text" value="<%= @user_profile.fullname %>"/>
                   <div class="form-group">
                     <label for="user_profile[gender]">性别</label>
 

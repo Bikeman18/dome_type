@@ -21,87 +21,20 @@ class UserController < ApplicationController
 
   # 修改个人信息
   def profile
-    # 获取Profile
-    # @user_profile = current_user.user_profile ||= current_user.build_user_profile
     guid = current_user.guid
-    @user_profile = UserInfo.find(guid).profile
-    # @th_role_status = UserRole.where(user_id: current_user.id, role_id: 1).first # 教师
-    @has_roles = UserRole.where(user_id: current_user.id).pluck(:role_id, :status)
-
-    # @has_roles = current_user.user_roles.select(:role_id, :status)
     if request.method == 'POST'
       if params[:user_profile].present?
-        # 过滤Profile参数
-        profile_params = params.require(:user_profile).permit(:username, :school_id, :bj, :district_id, :gender, :birthday, :student_code, :identity_card, :address, :cover, :desc, :teacher_no, :certificate, :grade, :autograph, {:roles => []}).tap do |list|
-          if params[:user_profile][:roles].present? && params[:user_profile][:roles] != '教师'
-            list[:roles] = params[:user_profile][:roles].join(',')
-          else
-            list[:roles] = nil
-          end
-        end
-        if [10, 11, 12].include?(profile_params[:grade])
-          unless /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.match(profile_params[:identity_card]) != nil
-            flash[:error] = '高中生请正确填写18位身份证号'
-            return false
-          end
-        end
-        message = ''
-        if profile_params[:roles].present? && profile_params[:roles].include?('教师')
-          unless profile_params[:teacher_no].present? && profile_params[:certificate].present? && profile_params[:school_id].present? && profile_params[:username].present? && [1, 2].include?(profile_params[:gender].to_i)
-            flash[:error] = '选择教师身份时，请填写姓名、性别、学校、教师编号、和上传教师证件'
-            return false
-          end
-          unless UserRole.where(user_id: current_user.id, role_id: 1).exists?
-            th_role = UserRole.create!(user_id: current_user.id, role_id: 1, status: 0) # 教师
-            if th_role.save
-              message = '您的老师身份已提交审核，审核通过后会在［消息］中告知您！'
-            else
-              message = '您的老师身份申请出现意外'
-            end
-          end
-        end
-        if profile_params[:roles].present? && profile_params[:roles].include?('家庭创客')
-          unless profile_params[:cover].present? && profile_params[:school_id].present? && profile_params[:username].present? && [1, 2].include?(profile_params[:gender].to_i)
-            flash[:error] = '选择家庭创客身份时，请填写姓名、性别、学校、描述和图片'
-            return false
-          end
-          unless UserRole.where(user_id: current_user.id, role_id: 2).exists?
-            th_role = UserRole.create!(user_id: current_user.id, role_id: 2, status: 0, cover: profile_params[:cover], desc: profile_params[:desc]) # 家庭创客
-            if th_role.save
-              message = '您的家庭创客身份已提交审核，审核通过后会在［消息］中告知您！'
-            else
-              message
-            end
-          end
-        end
-
-        if message=='-'
-          message=''
-        end
-        @user_profile.username = profile_params[:username]
-        @user_profile.autograph = profile_params[:autograph]
-        @user_profile.school_id = profile_params[:school_id]
-        @user_profile.district_id = profile_params[:district_id]
-        @user_profile.grade = profile_params[:grade]
-        @user_profile.bj = profile_params[:bj]
-        @user_profile.student_code = profile_params[:student_code]
-        @user_profile.identity_card = profile_params[:identity_card]
-        @user_profile.age = profile_params[:age]
-        @user_profile.birthday = profile_params[:birthday]
-        @user_profile.gender = profile_params[:gender]
-        @user_profile.address = profile_params[:address]
-        @user_profile.roles = profile_params[:roles]
-        @user_profile.teacher_no = profile_params[:teacher_no]
-        @user_profile.certificate = profile_params[:certificate]
-        if @user_profile.save
-          flash[:success] = '更新成功-'+message
-        else
-          flash[:error] = '更新失败-'+message
-        end
+        @user_extra = UserExtra.new(params[:user_profile].to_hash)
+        @user_extra.prefix_options[:user_id] = guid
+        @user_extra.save
       else
         flash[:error] = '不能提交空信息'
       end
       redirect_to user_profile_path
+
+    else
+      @user_profile = UserInfo.find(guid).profile
+      @has_roles = UserRole.where(user_id: current_user.id).pluck(:role_id, :status)
     end
   end
 
@@ -660,6 +593,10 @@ class UserController < ApplicationController
   end
 
   private
+
+  def user_extra_params()
+    params.require(:user_profile).permit(:fullname, :gender, :birthday, :identity_card)
+  end
 
   def set_user
     unless params[:id].present? && params[:id] =~ /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/

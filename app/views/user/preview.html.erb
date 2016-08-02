@@ -25,7 +25,7 @@
             <% end %>
             </p>
             <% if @user_info.profile.present? %>
-                <p>姓名：<%= @user_info.profile.username %></p>
+                <p>姓名：<%= @user_info.profile.fullname %></p>
                 <p>性别：
                 <% if @user_info.profile.gender == 1 %>男
                 <% elsif @user_info.profile.gender == 2 %>女

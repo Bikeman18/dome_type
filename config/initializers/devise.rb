@@ -2,11 +2,11 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.cas_base_url = "http://i.s1.com"
-  config.cas_logout_url_param = "destination"
-  config.cas_destination_url = "http://i.s1.com/logout"
-  config.cas_destination_logout_param_name = "service"
   config.cas_enable_single_sign_out = true
   config.cas_user_identifier = 'guid'
+  config.cas_logout_url = "http://i.s1.com/logout"
+  config.cas_logout_url_param = nil
+  config.cas_destination_logout_param_name = 'url'
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
