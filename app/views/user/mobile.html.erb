@@ -9,37 +9,7 @@
         <div class="user-main">
           <%= render 'user/tab' %>
           <div class="sub-content">
-            <% if current_user.mobile.present? %>
-                已认证的手机: <%= current_user.mobile %>
-                <a href="<%= Settings.user_reset_mobile_link %>" class="btn btn-xs btn-info show-update-mobile">更换手机</a>
-            <% else %>
-                <div class="sub-header">添加手机</div>
-                <%= simple_form_for(current_user, html: {}, url: user_mobile_path, method: :post) do |f| %>
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <div class="form-group">
-
-                          <%= rucaptcha_input_tag(class: 'form-control special-captcha', placeholder: '请输入校验码') %>
-                          <span class="refresh-captcha">
-                            <%= rucaptcha_image_tag(alt: '校验码', id: 'rucaptcha-image-style') %>
-                          </span>
-                        </div>
-                        <div class="form-group input-group">
-                          <input id="user-add_mobile" class="string  optional form-control" type="text" placeholder="请输入要添加的手机" name="user[mobile_info]" value="<%= current_user.mobile_info %>">
-                          <span class="input-group-addon btn-robodou-fix" data-key="user-add" data-type="ADD_MOBILE" id="btn_send_mobile_code">发送验证码</span>
-                        </div>
-                        <div class="">
-                          <input id="email_code" class="string email required form-control" placeholder="请输入手机收到的验证码" type="text" name="user[email_code]" value="<%= current_user.email_code %>">
-                        </div>
-                        <br>
-
-                        <div class="form-actions">
-                          <%= f.submit class: 'btn-robodou btn-block', value: '添加手机', 'data-disable-with' => '添加手机' %>
-                        </div>
-                      </div>
-                    </div>
-                <% end %>
-            <% end %>
+                <iframe name='iframe_mobile' id="iframe_mobile" src="http://i.s1.com/profile/phone" frameborder="0" border="0" cellspacing="0" width="400" height="300"></iframe>
           </div>
         </div>
       </div>
@@ -55,5 +25,3 @@
     </div>
   </div>
 </div>
-
-

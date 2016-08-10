@@ -85,4 +85,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # config.action_dispatch.default_headers = { 'X-Frame-Options' => 'ALLOW-FROM http://i.s1.com' }
+  # config.action_dispatch.default_headers.delete('X-Frame-Options')
+
+  #config.action_dispatch.default_headers = { 'X-Frame-Options' => 'ALLOWALL' }
+  config.assets.compile = true
 end

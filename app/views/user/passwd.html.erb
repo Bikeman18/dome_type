@@ -9,20 +9,7 @@
         <div class="user-main">
           <%= render 'user/tab' %>
           <div class="sub-content">
-            <%= simple_form_for(current_user, html: {id: 'form_change_password'}, url: user_passwd_path, method: :post) do |f| %>
-                <div class="row">
-                  <div class="col-xs-7">
-                    <div class="form-group password optional user_old_password">
-                      <label class="password optional control-label" for="user_old_password">原密码</label>
-                      <input id="user_old_password" class="password optional form-control" type="password" name="user[old_password]" placeholder="请输入您当前的密码">
-                    </div>
-                    <%= f.input :new_password, placeholder: '请输入您的新密码' %>
-                    <%= f.input :password_confirmation, placeholder: '请再次输入新密码' %>
-                    <%= f.submit class: 'btn btn-primary', value: '修改密码', 'data-disable-with' => '修改密码' %>
-                  </div>
-                </div>
-                </div>
-            <% end %>
+            <iframe name='iframe_passwd' id="iframe_passwd" src="http://i.s1.com/profile/password" frameborder="0" border="0" cellspacing="0" width="400" height="300"></iframe>
           </div>
         </div>
       </div>
@@ -38,5 +25,3 @@
     </div>
   </div>
 </div>
-
-

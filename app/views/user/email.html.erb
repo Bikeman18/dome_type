@@ -9,30 +9,7 @@
         <div class="user-main">
           <%= render 'user/tab' %>
           <div class="sub-content">
-            <% if current_user.present? && current_user.email.present? %>
-                您当前邮箱为: <%= current_user.email %>,无需添加
-                <a href="<%= user_reset_email_path %>">更换邮箱</a>
-            <% else %>
-                绑定邮箱
-                <hr/>
-                <%= simple_form_for(current_user, html: {}, url: user_email_path, method: :post) do |f| %>
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <div class="input-group form-group email optional user_email_info">
-                          <input id="user_email_info" class="email-value string email optional form-control" type="email" placeholder="请输入要添加的邮箱" name="user[email_info]" value="<%= current_user.email_info %>">
-                          <span class="input-group-addon btn-robodou-fix user-add-email" id="basic-addon2">发送验证码</span>
-                        </div>
-                        <div class="form-inputs">
-                          <input id="email_code" class="string email required form-control" placeholder="请输入邮箱收到的验证码" type="text" name="[email_code]">
-                        </div>
-                        <br/>
-                        <div class="form-actions">
-                          <%= f.submit class: 'btn-robodou btn-block', value: '添加邮箱', 'data-disable-with' => '添加邮箱' %>
-                        </div>
-                      </div>
-                    </div>
-                <% end %>
-            <% end %>
+            <iframe name='iframe_email' id="iframe_email" src="http://i.s1.com/profile/email" frameborder="0" border="0" cellspacing="0" width="400" height="300"></iframe>
           </div>
         </div>
       </div>
@@ -48,5 +25,3 @@
     </div>
   </div>
 </div>
-
-

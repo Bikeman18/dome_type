@@ -5,17 +5,17 @@
           基本信息
         </div>
       </a>
-      <a href="<%= Settings.user_email_link %>">
+      <a href="<%= user_email_path %>">
         <div class="sub-menu-item <%= 'active' if action_name == 'email' or action_name == 'reset_email' %>">
           邮箱信息
         </div>
       </a>
-      <a href="<%= Settings.user_reset_mobile_link %>">
+      <a href="<%= user_mobile_path %>">
         <div class="sub-menu-item <%= 'active' if action_name == 'mobile' or action_name == 'reset_mobile' %>">
           手机信息
         </div>
       </a>
-      <a href="<%= Settings.user_passwd_link %>">
+      <a href="<%= user_passwd_path %>">
         <div class="sub-menu-item <%= 'active' if action_name == 'passwd' %>">
           修改密码
         </div>

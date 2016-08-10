@@ -16,6 +16,7 @@ class UserController < ApplicationController
   def preview
     # @user_info = User.joins('left join user_profiles u_p on u_p.user_id = users.id').joins('left join schools s on s.id = u_p.school_id').where(id: current_user.id).select(:email, :mobile, 'u_p.username as name', 'u_p.gender', 'u_p.grade', 'u_p.bj', 'u_p.roles as role', 'u_p.birthday', 's.name as school', 'u_p.address').take
     @user_info = UserInfo.find(current_user.guid)
+    # response.headers.delete "X-Frame-Options"
   end
 
 
@@ -34,6 +35,7 @@ class UserController < ApplicationController
 
     else
       @user_profile = UserInfo.find(guid).profile
+
       @has_roles = UserRole.where(user_id: current_user.id).pluck(:role_id, :status)
     end
   end
