@@ -29,10 +29,11 @@
         </div>
         <div class="user-info pull-right">
           <% if current_user %>
+            <% @base_info = UserInfo.find(current_user.guid) %>
               <div class="login-info">
                 <div class="dropdown">
                   <button class="btn-robodou" data-toggle="dropdown">
-                    <%= current_user.nickname %> <span class="caret"></span>
+                    <%= @base_info.nickname %> <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-robodou">
                     <li><a href="<%= user_preview_path %>">个人中心</a></li>

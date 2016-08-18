@@ -9,31 +9,31 @@
         <div class="user-main">
           <%= render 'user/tab' %>
           <div class="sub-content">
-            <p>昵称：<%= @user_info.nickname %></p>
+            <p>昵称：<%= @base_info.nickname %></p>
             <p>
-            <% if @user_info.mobile.present? %>
-                手机：<%= @user_info.mobile %> <a href="<%= user_mobile_path %>">修改</a>
+            <% if @base_info.mobile.present? %>
+                手机：<%= current_user.mobile %> <a href="<%= user_reset_mobile_path %>">修改</a>
             <% else %>
                 <a href="<%= user_mobile_path %>">添加手机</a>
             <% end %>
             </p>
             <p>
-            <% if @user_info.email.present? %>
-                邮箱：<%= @user_info.email %> <a href="<%= user_email_path %>">修改</a>
+            <% if @base_info.email.present? %>
+                邮箱：<%= current_user.email %> <a href="<%= user_reset_email_path %>">修改</a>
             <% else %>
                 <a href="<%= user_email_path %>">添加邮箱</a>
             <% end %>
             </p>
-            <% if @user_info.profile.present? %>
-                <p>姓名：<%= @user_info.profile.fullname %></p>
+            <% if @user_info.present? %>
+                <p>姓名：<%= @user_info.name %></p>
                 <p>性别：
-                <% if @user_info.profile.gender == 1 %>男
-                <% elsif @user_info.profile.gender == 2 %>女
+                <% if @user_info.gender == 1 %>男
+                <% elsif @user_info.gender == 2 %>女
                 <% else %>
                 <% end %>
                 </p>
-                <p>生日：<%= @user_info.profile.birthday %></p>
-                <p>地址：<%= @user_info.profile.address %></p>
+                <p>生日：<%= @user_info.birthday %></p>
+                <p>地址：<%= @user_info.address %></p>
             <% end %>
             <a class="btn-robodou profile-path" href="<%= user_profile_path %>">编辑个人信息</a>
           </div>
