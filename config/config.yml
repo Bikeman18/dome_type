@@ -9,9 +9,8 @@ defaults: &defaults
   sms_key: '5ADACD3B321C24266C9BDF739AE58EE0'
   sms_channel: '5552'
   geetest_key: '0f1a37e33c9ed10dd2e133fe2ae9c459'
-  user_reset_mobile_link: 'http://i.s1.com/profile/phone'
-  user_email_link: 'http://i.s1.com/profile/email'
-  user_passwd_link: 'http://i.s1.com/profile/password'
+  auth_url: 'http://i.s1.com'
+  auth_identifier: 'guid'
 development:
   <<: *defaults
   domain: 'http://localhost:3000'

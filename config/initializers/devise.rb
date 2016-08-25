@@ -1,10 +1,9 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.cas_base_url = "http://i.s1.com"
+  config.cas_base_url = Settings.auth_url
   config.cas_enable_single_sign_out = true
-  config.cas_user_identifier = 'guid'
-  config.cas_logout_url = "http://i.s1.com/logout"
+  config.cas_user_identifier = Settings.auth_identifier
   config.cas_logout_url_param = nil
   config.cas_destination_logout_param_name = 'url'
   # The secret key used by Devise. Devise uses this key to generate

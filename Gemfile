@@ -65,7 +65,6 @@ gem 'rails_kindeditor', github: 'javyliu/rails_kindeditor'
 gem 'carrierwave-video'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra'
-gem 'rack-protection', github: 'sinatra/rack-protection'
 gem 'jquery-fileupload-rails'
 
 gem 'devise_cas_authenticatable',github: 'nbudin/devise_cas_authenticatable'
